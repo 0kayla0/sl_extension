@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+        <title>Security Header Checking Tool</title>
+        
+
+        
+        <script src="popup.js">
+        
+        </script>
+        
+        <style>
+        
+        button {
+          height: 30px;
+          width: 60%;
+          outline: 1px;
+        }
+        
+        body {background-color: white;}
+
+        </style>
+    </head>
+    
+     <body border: 5px solid red align="center";>
+
+    <h2 style="font-weight:bold">Security Information</h2> 
+    <h3>Checks the Headers of the current web page for security information.</h3>
+    <table align="center" border="1" cellpadding="3" style="border-collapse:collapse;" id ="attributes">
+      <tr>
+        <th>Header Type</th>
+        <th>Header Present?</th>
+      </tr>
+      <tr>
+        <td nowrap align="left" title="Does the website have the Strict-Transport-Security header?">Strict-Transport-Security</td>
+        <td align="right"><span id="StrictTransportSecurity">N/A</span></td>
+      </tr>
+      <tr>
+        <td nowrap title="Does the website have the Content-Security-Policy header?">Content-Security-Policy</td>
+        <td align="right"><span id="ContentSecurityPolicy">N/A</span></td>
+      </tr>
+      <tr>
+        <td nowrap title="Does the website have the X-Frame-Options header?">X-Frame-Options</td>
+        <td nowrap align="right"><span id="XFrameOptions">N/A</span></td>
+      </tr>
+      <tr>
+        <td nowrap title="Does the website have the X-XSS-Protection header?">X-XSS-Protection</td>
+        <td align="right"><span id="XXSSProtection">N/A</span></td>
+      </tr>
+      <tr>
+        <td nowrap title="Does the website have the X-Content-Type-Options header?">X-Content-Type-Options</td>
+        <td align="right"><span id="XContentTypeOptions">N/A</span></td>
+      </tr>
+      <tr>
+        <td nowrap title="Does the website have the Referrer-Policy header?">Referrer-Policy</td>
+        <td align="right"><span id="ReferrerPolicy">N/A</span></td>
+      </tr>
+      <tr>
+        <td nowrap title="Does the website have the Feature-Policy header?">Feature-Policy</td>
+        <td align="right"><span id="FeaturePolicy">N/A</span></td>
+      </tr>
+      <tr>
+        <td nowrap title="Does the website have the Public-Key-Pins header?">Public-Key-Pins</td>
+        <td align="right"><span id="PublicKeyPins">N/A</span></td>
+      </tr>
+    </table>
+    <button>Check Headers</button>
+    </body>
+  </html>
