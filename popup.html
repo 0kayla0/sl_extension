@@ -1,35 +1,26 @@
 <!DOCTYPE html>
-  <html>
-    <head>
-        <title>Security Header Checking Tool</title>
-        
-
-        
-        <script src="popup.js">
-        
-        </script>
-        
-        <style>
-        
-        button {
-          height: 30px;
-          width: 60%;
-          outline: 1px;
-        }
-        
-        body {background-color: white;}
-
-        </style>
-    </head>
-    
-     <body border: 5px solid red align="center";>
-
-    <h2 style="font-weight:bold">Security Information</h2> 
-    <h3>Checks the Headers of the current web page for security information.</h3>
-    <table align="center" border="1" cellpadding="3" style="border-collapse:collapse;" id ="attributes">
+<html>
+<style>
+#attributes tr:nth-child(even){background-color: #f0f0f0;}
+#attributes tr:nth-child(odd){background-color: #ffffff;}
+#attributes td {
+  text-align: left;
+}
+</style>
+  <head>
+    <script type="text/javascript" src="popup.js"></script>
+  </head>
+  <body align="center";>
+    <h2 style="font-weight:bold">Fresh Phish</h2>
+    <h3>Hover mouse over attribute for more information</h3>
+    <table border="1" cellpadding="3" style="border-collapse:collapse;" id ="attributes">
       <tr>
-        <th>Header Type</th>
-        <th>Header Present?</th>
+        <th>Variables</th>
+        <th>Value</th>
+      </tr>
+            <tr>
+        <td nowrap title="This is the URL">URL</td>
+        <td align="right"><span id="URL">N/A</span></td>
       </tr>
       <tr>
         <td nowrap align="left" title="Does the website have the Strict-Transport-Security header?">Strict-Transport-Security</td>
