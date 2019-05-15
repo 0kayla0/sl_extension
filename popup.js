@@ -8,11 +8,28 @@ function setDOMInfo(info) {
   document.getElementById('URL').textContent = info.URL;
   myFunction();
 }
-function convertBoolean(value){
+
+function sendData() {
+  //turn variables into json
+  var variables = {
+    "strict-transport-security" : data[0],
+    "Content-Security-Policy"   : data[1],
+    "x-frame-options"           : data[2],
+    "x-xss-protection"          : data[3],
+    "x-content-type-options"    : data[4],
+    "referrerpolicy"            : data[5],
+    "Feature-Policy"            : data[6],
+    "Public-Key-Pins"           : data[7]
+  };
   
-  return (value ? 1: -1);
+  xhr.open("POST", "http://localhost/",0);
+  xhr.setRequestHeader("Content-type", "application/json");
+  xhr.send(JSON.stringify(variables));
+
 }
+
 function myFunction() {
+  sendData();
   xhr.open("GET", document.getElementById('URL').textContent ,0);
   
   xhr.setRequestHeader('Access-Control-Expose-Headers', 'Content-Type, Location');

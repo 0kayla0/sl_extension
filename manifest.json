@@ -17,7 +17,9 @@
     "js": ["content.js"],
     "run_at": "document_end",
     "all_frames": false
-  }],
+  }],  "permissions": [
+    "http://localhost/"
+  ],
   
 "page_action":{
 "default_icon":"icon.png",
