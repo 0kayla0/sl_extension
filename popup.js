@@ -18,29 +18,21 @@ function myFunction() {
   xhr.setRequestHeader('Access-Control-Expose-Headers', 'Content-Type, Location');
   xhr.send(200);
   
-  var headers = xhr.getAllResponseHeaders();
-  var arr = headers.trim().split(/[\r\n]+/);
-  
-  // Create a map of header names to values
-  var headerMap = {};
-  arr.forEach(function (line) {
-    var parts = line.split(': ');
-    var header = parts.shift();
-    var value = parts.join(': ');
-    headerMap[header] = value;
-  });
-  data[0] = headerMap["strict-transport-security"];
+
+  data[0] = xhr.getResponseHeader("strict-transport-security");
   data[1] = xhr.getResponseHeader("Content-Security-Policy");
-  data[2] = headerMap["x-frame-options"];
-  data[3] = headerMap["x-xss-protection"];
-  data[4] = headerMap["x-content-type-options"];
+  data[2] = xhr.getResponseHeader("x-frame-options");
+  data[3] = xhr.getResponseHeader("x-xss-protection");
+  data[4] = xhr.getResponseHeader("x-content-type-options");
   data[5] = xhr.getResponseHeader("referrerpolicy");
   data[6] = xhr.getResponseHeader("Feature-Policy");
   data[7] = xhr.getResponseHeader("Public-Key-Pins");
   
   for(var i = 0; i < data.length; i++){
-    data2[i] = ((data[i] === "undefined") || (data[i] === '')? "Bad" : "Good")
+    
+    data2[i] = ((data[i] === "undefined") || (data[i] === null)? "Bad" : "Good")
   }
+  
   document.getElementById("StrictTransportSecurity").innerHTML = data2[0];
   document.getElementById("ContentSecurityPolicy").innerHTML = data2[1];
   document.getElementById("XFrameOptions").innerHTML = data2[2];
