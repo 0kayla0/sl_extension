@@ -17,8 +17,10 @@
     "js": ["content.js"],
     "run_at": "document_end",
     "all_frames": false
-  }],  "permissions": [
+  }],  
+  "permissions": [
     "http://localhost/"
+    "http://129.82.174.202/"
   ],
   
 "page_action":{
