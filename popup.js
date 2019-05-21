@@ -12,6 +12,7 @@ function setDOMInfo(info) {
 function sendData() {
   //turn variables into json
   var variables = {
+    "URL"                       : document.getElementById('URL').textContent,
     "strict-transport-security" : data[0],
     "Content-Security-Policy"   : data[1],
     "x-frame-options"           : data[2],
@@ -23,7 +24,7 @@ function sendData() {
   };
   document.getElementById("StrictTransportSecurity").innerHTML = variables["strict-transport-security"];
   //xhr.open("POST", "http://localhost/",0);
-  xhr.open("POST", "http://129.82.174.202/",0);
+  xhr.open("POST", "http://129.82.174.202:1025/",0);
   xhr.setRequestHeader("Content-type", "application/json");
   xhr.send(JSON.stringify(variables));
 }
