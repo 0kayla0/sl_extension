@@ -1,46 +1,75 @@
 var xhr = new XMLHttpRequest();
-var percent;
-var https;
-var copyright;
-var match;
-var char;
+var data = new Array(8);
+var data2 = new Array(8);
 //document.getElementById("result").innerHTML = xhr.responseText;
 // Update the relevant fields with the new data
 function setDOMInfo(info) {
 
   document.getElementById('URL').textContent = info.URL;
+  myFunction();
+}
 
+function sendData() {
+  //turn variables into json
+  var variables = {
+    "URL"                       : document.getElementById('URL').textContent,
+    "strict-transport-security" : data[0],
+    "Content-Security-Policy"   : data[1],
+    "x-frame-options"           : data[2],
+    "x-xss-protection"          : data[3],
+    "x-content-type-options"    : data[4],
+    "referrerpolicy"            : data[5],
+    "Feature-Policy"            : data[6],
+    "Public-Key-Pins"           : data[7]
+  };
+  document.getElementById("StrictTransportSecurity").innerHTML = variables["strict-transport-security"];
+  //xhr.open("POST", "http://localhost/",0);
+  xhr.open("POST", "http://129.82.174.202:1025/",0);
+  xhr.setRequestHeader("Content-type", "application/json");
+  xhr.send(JSON.stringify(variables));
 }
-function convertBoolean(value){
-  
-  return (value ? 1: -1);
-}
+
 function myFunction() {
   xhr.open("GET", document.getElementById('URL').textContent ,0);
   
   xhr.setRequestHeader('Access-Control-Expose-Headers', 'Content-Type, Location');
   xhr.send(200);
   
-  var headers = xhr.getAllResponseHeaders();
-  var arr = headers.trim().split(/[\r\n]+/);
+
+  data[0] = xhr.getResponseHeader("strict-transport-security");
+  data[1] = xhr.getResponseHeader("Content-Security-Policy");
+  data[2] = xhr.getResponseHeader("x-frame-options");
+  data[3] = xhr.getResponseHeader("x-xss-protection");
+  data[4] = xhr.getResponseHeader("x-content-type-options");
+  data[5] = xhr.getResponseHeader("referrerpolicy");
+  data[6] = xhr.getResponseHeader("Feature-Policy");
+  data[7] = xhr.getResponseHeader("Public-Key-Pins");
   
-  // Create a map of header names to values
-  var headerMap = {};
-  arr.forEach(function (line) {
-    var parts = line.split(': ');
-    var header = parts.shift();
-    var value = parts.join(': ');
-    headerMap[header] = value;
-  });
+  sendData();
+  for(var i = 0; i < data.length; i++){
+    data2[i] = ((data[i] === "undefined") || (data[i] === null)? "Bad" : "Good")
+  }
   
-  document.getElementById("StrictTransportSecurity").innerHTML = headerMap["strict-transport-security"];
-  document.getElementById("XFrameOptions").innerHTML = headerMap["x-frame-options"];
-  document.getElementById("XXSSProtection").innerHTML = headerMap["x-xss-protection"];
-  document.getElementById("XContentTypeOptions").innerHTML = headerMap["x-content-type-options"];
-  
+  document.getElementById("StrictTransportSecurity").innerHTML = data2[0];
+  document.getElementById("ContentSecurityPolicy").innerHTML = data2[1];
+  document.getElementById("XFrameOptions").innerHTML = data2[2];
+  document.getElementById("XXSSProtection").innerHTML = data2[3];
+  document.getElementById("XContentTypeOptions").innerHTML = data2[4];
+  document.getElementById("ReferrerPolicy").innerHTML = data2[5];
+  document.getElementById("FeaturePolicy").innerHTML = data2[6];
+  document.getElementById("PublicKeyPins").innerHTML = data2[7];
 }
 
-
+function advanced(){
+  document.getElementById("StrictTransportSecurity").innerHTML = data[0];
+  document.getElementById("ContentSecurityPolicy").innerHTML = data[1];
+  document.getElementById("XFrameOptions").innerHTML = data[2];
+  document.getElementById("XXSSProtection").innerHTML = data[3];
+  document.getElementById("XContentTypeOptions").innerHTML = data[4];
+  document.getElementById("ReferrerPolicy").innerHTML = data[5];
+  document.getElementById("FeaturePolicy").innerHTML = data[6];
+  document.getElementById("PublicKeyPins").innerHTML = data[7];
+}
 window.addEventListener('DOMContentLoaded', function () {
   // ...query for the active tab...
   chrome.tabs.query({
@@ -50,7 +79,7 @@ window.addEventListener('DOMContentLoaded', function () {
     // ...and send a request for the DOM info...
     chrome.tabs.sendMessage(
       tabs[0].id,
-      {from: 'popup', subject: 'phishingInfo'},
+      {from: 'popup', subject: 'headerInfo'},
       // ...also specifying a callback to be called 
       //    from the receiving end (content script)
       setDOMInfo);
@@ -58,5 +87,5 @@ window.addEventListener('DOMContentLoaded', function () {
 });
 //add an event listener for the button being pushed
 document.addEventListener('DOMContentLoaded', function () {
-  document.querySelector('button').addEventListener('click', myFunction);
+  document.querySelector('button').addEventListener('click', advanced);
 });

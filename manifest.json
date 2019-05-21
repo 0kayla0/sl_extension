@@ -17,7 +17,7 @@
     "js": ["content.js"],
     "run_at": "document_end",
     "all_frames": false
-  }],
+  }],  
   
 "page_action":{
 "default_icon":"icon.png",
