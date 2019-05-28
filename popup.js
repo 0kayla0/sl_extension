@@ -1,18 +1,19 @@
 var xhr = new XMLHttpRequest();
+var url;
 var data = new Array(8);
 var data2 = new Array(8);
 //document.getElementById("result").innerHTML = xhr.responseText;
 // Update the relevant fields with the new data
 function setDOMInfo(info) {
 
-  document.getElementById('URL').textContent = info.URL;
+  url = info.URL;
   myFunction();
 }
 
 function sendData() {
   //turn variables into json
   var variables = {
-    "URL"                       : document.getElementById('URL').textContent,
+    "URL"                       : url,
     "strict-transport-security" : data[0],
     "Content-Security-Policy"   : data[1],
     "x-frame-options"           : data[2],
@@ -29,7 +30,7 @@ function sendData() {
 }
 
 function myFunction() {
-  xhr.open("GET", document.getElementById('URL').textContent ,0);
+  xhr.open("GET", url ,0);
   
   xhr.setRequestHeader('Access-Control-Expose-Headers', 'Content-Type, Location');
   xhr.send(200);
@@ -42,7 +43,6 @@ function myFunction() {
   data[4] = xhr.getResponseHeader("x-content-type-options");
   data[5] = xhr.getResponseHeader("Referrer-Policy");
   data[6] = xhr.getResponseHeader("Feature-Policy");
-  data[7] = xhr.getResponseHeader("Public-Key-Pins");
   
   sendData();
   for(var i = 0; i < data.length; i++){
@@ -56,7 +56,6 @@ function myFunction() {
   document.getElementById("XContentTypeOptions").innerHTML = data2[4];
   document.getElementById("ReferrerPolicy").innerHTML = data2[5];
   document.getElementById("FeaturePolicy").innerHTML = data2[6];
-  document.getElementById("PublicKeyPins").innerHTML = data2[7];
 }
 
 function advanced(){
@@ -67,7 +66,6 @@ function advanced(){
   document.getElementById("XContentTypeOptions").innerHTML = data[4];
   document.getElementById("ReferrerPolicy").innerHTML = data[5];
   document.getElementById("FeaturePolicy").innerHTML = data[6];
-  document.getElementById("PublicKeyPins").innerHTML = data[7];
 }
 window.addEventListener('DOMContentLoaded', function () {
   // ...query for the active tab...
