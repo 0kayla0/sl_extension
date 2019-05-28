@@ -22,8 +22,7 @@ function sendData() {
     "Feature-Policy"            : data[6],
     "Public-Key-Pins"           : data[7]
   };
-  document.getElementById("StrictTransportSecurity").innerHTML = variables["strict-transport-security"];
-  //xhr.open("POST", "http://localhost/",0);
+
   xhr.open("POST", "http://129.82.174.202:1025/",0);
   xhr.setRequestHeader("Content-type", "application/json");
   xhr.send(JSON.stringify(variables));
@@ -41,13 +40,13 @@ function myFunction() {
   data[2] = xhr.getResponseHeader("x-frame-options");
   data[3] = xhr.getResponseHeader("x-xss-protection");
   data[4] = xhr.getResponseHeader("x-content-type-options");
-  data[5] = xhr.getResponseHeader("referrerpolicy");
+  data[5] = xhr.getResponseHeader("Referrer-Policy");
   data[6] = xhr.getResponseHeader("Feature-Policy");
   data[7] = xhr.getResponseHeader("Public-Key-Pins");
   
   sendData();
   for(var i = 0; i < data.length; i++){
-    data2[i] = ((data[i] === "undefined") || (data[i] === null)? "Bad" : "Good")
+    data2[i] = ((data[i] === "undefined") || (data[i] === null)? "Missing" : "Present")
   }
   
   document.getElementById("StrictTransportSecurity").innerHTML = data2[0];
