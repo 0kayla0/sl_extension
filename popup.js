@@ -1,15 +1,13 @@
 var xhr = new XMLHttpRequest();
 var url;
-var data = new Array(8);
-var data2 = new Array(8);
+var data = new Array(9);
+var data2 = new Array(9);
 var basic = true;
 var table
-//document.getElementById("result").innerHTML = xhr.responseText;
 // Update the relevant fields with the new data
 function setDOMInfo(info) {
-  
   url = info.URL;
-  myFunction();
+  dataCollection();
 }
 
 function sendData() {
@@ -31,7 +29,7 @@ function sendData() {
   xhr.send(JSON.stringify(variables));
 }
 
-function myFunction() {
+function dataCollection() {
   xhr.open("GET", url ,0);
   
   xhr.setRequestHeader('Access-Control-Expose-Headers', 'Content-Type, Location');
@@ -45,7 +43,9 @@ function myFunction() {
   data[4] = xhr.getResponseHeader("x-content-type-options");
   data[5] = xhr.getResponseHeader("Referrer-Policy");
   data[6] = xhr.getResponseHeader("Feature-Policy");
-  
+  data[7] = xhr.getResponseHeader("X-Download-Options");
+  data[8] = xhr.getResponseHeader("Public-Key-Pins");
+  //sends data to a web service hosted at CSU
   sendData();
   
   
@@ -59,6 +59,8 @@ function myFunction() {
   document.getElementById("XContentTypeOptions").innerHTML = data2[4];
   document.getElementById("ReferrerPolicy").innerHTML = data2[5];
   document.getElementById("FeaturePolicy").innerHTML = data2[6];
+  document.getElementById("XDownloadOptions").innerHTML = data2[6];
+  document.getElementById("PublicKeyPins").innerHTML = data2[6];
 
   indicator(data);
 }
@@ -70,8 +72,7 @@ function indicator(data) {
     values[i*3].style.backgroundColor = (data[i] === null ? "red" : "green") ;
   }
 }
-
-//Switches information from basic to advanced based on a boolean TODO: This only works once...
+//Switches information from basic to advanced based on a boolean 
 function change(){
   let offset = 2;
   var x = table.getElementsByTagName("td");
