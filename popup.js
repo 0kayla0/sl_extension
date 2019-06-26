@@ -59,8 +59,8 @@ function dataCollection() {
   document.getElementById("XContentTypeOptions").innerHTML = data2[4];
   document.getElementById("ReferrerPolicy").innerHTML = data2[5];
   document.getElementById("FeaturePolicy").innerHTML = data2[6];
-  document.getElementById("XDownloadOptions").innerHTML = data2[6];
-  document.getElementById("PublicKeyPins").innerHTML = data2[6];
+  document.getElementById("XDownloadOptions").innerHTML = data2[7];
+  document.getElementById("PublicKeyPins").innerHTML = data2[8];
 
   indicator(data);
 }
