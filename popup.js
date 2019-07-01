@@ -21,7 +21,8 @@ function sendData() {
     "x-content-type-options"    : data[4],
     "referrerpolicy"            : data[5],
     "Feature-Policy"            : data[6],
-    "Public-Key-Pins"           : data[7]
+    "X-Download-Options"        : data[7],
+    "Public-Key-Pins"           : data[8]
   };
   
   xhr.open("POST", "http://129.82.174.202:1025/",0);
