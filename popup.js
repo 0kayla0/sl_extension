@@ -4,6 +4,7 @@ var data = new Array(9);
 var data2 = new Array(9);
 var basic = true;
 var table
+const csvOutput = ["Date","URL","strict-transport-security","Content-Security-Policy","x-frame-options","x-xss-protection","x-content-type-options","referrerpolicy","Feature-Policy","X-Download-Options","Public-Key-Pins"];
 // Update the relevant fields with the new data
 function setDOMInfo(info) {
   url = info.URL;
@@ -81,6 +82,32 @@ function change(){
     x[(i*3) + offset].innerHTML = data[i];
   }
 }
+//Get Today's date
+function date(){
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = today.getFullYear();
+
+  today = mm + '/' + dd + '/' + yyyy;
+  return today;
+}
+
+//when the download button is clicked, it downloads a csv file with 
+function download(){
+  let headers = [date(),url,data[0],data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8]];
+  //make csv format for download
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(csvOutput + '\n' + headers));
+  element.setAttribute('download', 'Security_Header.csv');
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+}
 
 window.addEventListener('DOMContentLoaded', function () {
   // ...query for the active tab...
@@ -97,8 +124,12 @@ window.addEventListener('DOMContentLoaded', function () {
       setDOMInfo);
   });
 });
-//add an event listener for the button being pushed
+
+//add an event listener for the show advanced info button being pushed
 document.addEventListener('DOMContentLoaded', function () {
   table = document.getElementById("attributes")
   document.getElementById("change").addEventListener('click', change);
+});
+document.addEventListener('DOMContentLoaded', function () {
+  document.getElementById("download").addEventListener('click', download);
 });
