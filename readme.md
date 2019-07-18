@@ -55,7 +55,8 @@ The extension is not in the Chrome Store yet. Please follow the steps below for 
 - Type “chrome://extensions” to the address bar
 
 - Turn on “Developer mode” on the top right side of the screen
-![enter image description here](https://lh3.googleusercontent.com/qTifPC6hc8_qcWjT2ZeZ_GLlDXGMiBfBq-2MUoCESkCh5HCE5CvQXMc5YgDE1SAX3hhyULTEaS0B "DevMode")
+
+![Developer Mode Switch](https://lh3.googleusercontent.com/qTifPC6hc8_qcWjT2ZeZ_GLlDXGMiBfBq-2MUoCESkCh5HCE5CvQXMc5YgDE1SAX3hhyULTEaS0B "DevMode")
 
 - A new set of new options will appear at the top left side of the screen under the blue bar
 
@@ -69,11 +70,11 @@ The extension is not in the Chrome Store yet. Please follow the steps below for 
 
 When you first click the extension, you’ll see the window below. On the left most column, you’ll see a color-coded indication of Security Header status. Red for “No setting applied” and Green for “any setting applied”. Under the “Variables” column, you can see all the Security Response Headers that our extension investigates. On the initial window, in the rightmost column, the “Value” column, you can see if the web page you are on has the respective Security Response Headers set or missing.
 
-![](https://lh3.googleusercontent.com/mcBGBceQt9VKbFmLLv3BQ7n076YmzjR-wWJ6gU1cpyBGHCUIskt4XB-r1yJL43fngHlNRDvFoMmJ "Basic Information")
+![Basic Info](https://lh3.googleusercontent.com/mcBGBceQt9VKbFmLLv3BQ7n076YmzjR-wWJ6gU1cpyBGHCUIskt4XB-r1yJL43fngHlNRDvFoMmJ "Basic Information")
 
 If you click the “Show Advanced Info” button, you will see the window below. The first two columns are the same with the first window. However, the last column is detailed version of the previous window. In “Advanced Info” mode, the values you see are the settings that are implemented for the site or the server you are communicating with.
 
-![](https://lh3.googleusercontent.com/WeyTDnXF8zEQoe3vnOOSS0UBvEGq2o9Mn9pnWKvsqPDGhPB91dg6EpBs_cIPs5GZBsdSf5O9RV8k "Advanced Info")
+![Advanced Info](https://lh3.googleusercontent.com/WeyTDnXF8zEQoe3vnOOSS0UBvEGq2o9Mn9pnWKvsqPDGhPB91dg6EpBs_cIPs5GZBsdSf5O9RV8k "Advanced Info")
 
 The final feature is the “Download Info” button. When you click this button, you can download a .csv file that holds date and URL information and Security Response Headers settings of the website or the server you are communicating with.
 
